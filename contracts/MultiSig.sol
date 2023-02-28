@@ -60,6 +60,7 @@ contract MultiSig {
     }
 
     function submit(address _to, uint _value, bytes calldata _data) external onlyOwner {
+        require(address(this).balance >= _value, "Not enough funds");
         transactions.push(Transaction({
             to: _to,
             value: _value,
